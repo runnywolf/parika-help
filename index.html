@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="description" content="An Albion Online wiki by wolf." />
+    <link rel="shortcut icon" type="image/png" href="img/parika.png">
+    <title>parika help</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="tool/parika_help.css">
+  </head>
+  <body>
+    <div class="headMainWrapper">
+      <div class="head flex-start">
+        <div class="head-title">
+          <span style="color:#520;">parika的空間</span>
+        </div>
+      </div>
+      <div class="mainWrapper">
+        <div class="main flex-start">
+          <div>
+            <div class="main-contents" id="main_contents"></div>
+          </div>
+          <div>
+            <div class="main-article">
+              <div>
+                <div class="main-article-title-h1">關於parika...</div>
+                生日 7 月 9 號，今年 338 歲，喜歡研究藥水和製作法杖。<br>
+                正在學習怎麼用 discord。
+              </div>
+              <div class="main-article-paragraph">
+                <div class="main-article-title-h2">指令表</div>
+                指令表越來越長拉，所以就放到github上了，不然太頻繁的查指令會洗版...<br>
+                <br>
+                <div class="flex-start">
+                  <span style="margin-top:3px;">指令縮寫：</span>
+                  <button class="button-style1" onclick="change_arg(1)" id="button_s1">縮寫1</button>
+                  <button class="button-style1" onclick="change_arg(2)" id="button_s2">縮寫2</button>
+                  <span style="margin-top:3px;"> (可疊加)</span>
+                </div>
+                基本指令：
+                <ul class="ul-style1" style="margin-bottom:12px;">
+                  <li>
+                    <span class="bold"><span id="arg_1_r0">$parika</span> <span id = "arg_1_r1">help</span></span><br>
+                    - 指令列表。
+                  </li>
+                  <li>
+                    <span class="bold"><span id="arg_2_r0">$parika</span> <span id = "arg_2_r1">intro</span></span><br>
+                    - 自我介紹。
+                  </li>
+                  <li>
+                    <span class="bold"><span id="arg_3_r0">$parika</span> <span id = "arg_3_r1">update</span> (version=1.0~1.5)</span><br>
+                    - 更新內容，參數 (version) 若無則預設為最新版本。
+                  </li>
+                  <li>
+                    <span class="bold"><span id="arg_4_r0">$parika</span> <span id = "arg_4_r1">avatarurl</span> [usertag]</span><br>
+                    - 獲得頭像的圖片連結。(僅回傳第一個)
+                    <div class="flex-start">
+                      <span>例：</span>
+                      <img src="img/p_au.png" style="height:18px; margin-top:3px;">
+                    </div>
+                  </li>
+                  <li>
+                    <span class="bold"><span id="arg_5_r0">$parika</span> <span id = "arg_5_r1">emojiurl</span> [emoji]</span><br>
+                    - 獲得表情符號的圖片連結。(僅回傳第一個)
+                    <div class="flex-start">
+                      <span>例：</span>
+                      <img src="img/p_eu.png" style="height:18px; margin-top:3px;">
+                    </div>
+                  </li>
+                  <li>
+                    <span class="bold"><span id="arg_6_r0">$parika</span> <span id = "arg_6_r1">speedtest</span></span><br>
+                    - 讀取訊息的頻率。
+                  </li>
+                </ul>
+                管理員指令：(需要權限)
+                <ul class="ul-style1">
+                  <li>
+                    <span class="bold"><span id="arg_7_r0">$parika</span> <span id = "arg_7_r1">quit</span></span><br>
+                    - 暫時離開。
+                  </li>
+                </ul>
+                <br>
+                參數說明: [必填參數] (非必填參數)<br>
+                指令的每個參數間需要用空白鍵分隔。<br>
+                若 $p 與其他bot的指令碰撞，可以使用 $parika。
+              </div>
+            </div>
+          </div>
+          <div class="main-error" id="main-error"></div>
+        </div>
+      </div>
+    </div>
+    <div class="foot">
+      <div class="foot-info">
+        [#01# parika v1.5] $p h<br>
+        Last update date: 2022/12/16
+      </div>
+    </div>
+    <script>
+      var s1 = false, s2 = false;
+      function change_arg(s){
+        var e_button_s1 = $("#button_s1");
+        var e_button_s2 = $("#button_s2");
+
+        if (s == 1) s1 = ~s1;
+        else if (s == 2) s2 = ~s2;
+        
+        e_button_s1.css("background", s1?"#8ff":"");
+        e_button_s2.css("background", s2?"#8ff":"");
+
+        r1 = [null, "help", "intro", "update", "avatarurl", "emojiurl", "speedtest", "quit"];
+        r1_short = [null, "h", "i", "u", "au", "eu", "st", "q"];
+        for (var i = 1; i <= 7; i++){
+          $("#arg_"+i+"_r0").text(s1?"$p":"$parika");
+          $("#arg_"+i+"_r0").css("color", s1?"#00f":"");
+          $("#arg_"+i+"_r1").text(s2?r1_short[i]:r1[i]);
+          $("#arg_"+i+"_r1").css("color", s2?"#00f":"");
+        }
+      }
+    </script>
+  </body>
+</html>
